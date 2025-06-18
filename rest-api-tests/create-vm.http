@@ -1,0 +1,14 @@
+POST http://localhost:8080/vms
+Content-Type: application/json
+
+{
+  "name": "demo-vm",
+  "image": "nginx:latest",
+  "cpu": 0.5,
+  "memory": 256,
+  "ports": [9999],
+  "env": {
+    "ENV": "demo"
+  },
+  "container_id": ""
+}
