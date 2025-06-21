@@ -11,14 +11,14 @@ func Authenticate(context *gin.Context) {
 	token := context.Request.Header.Get("Authorization")
 
 	if token == "" {
-		context.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"message": "Not authorized."})
+		context.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"message": "Not authorized - Missing token"})
 		return
 	}
 
 	user_id, err := utils.VerifyToken(token)
 
 	if err != nil {
-		context.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"message": "Not authorized."})
+		context.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"message": "Not authorized - Wrong or malformed token"})
 		return
 	}
 
