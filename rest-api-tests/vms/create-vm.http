@@ -6,7 +6,7 @@ Content-Type: application/json
   "image": "nginx:latest",
   "cpu": 0.5,
   "memory": 256,
-  "ports": [9999],
+  "ports": [1234],
   "env": {
     "ENV": "demo"
   },
