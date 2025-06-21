@@ -1,0 +1,15 @@
+POST http://localhost:8080/vms
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA1MzI1OTcsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.-q1UdK4RaJDO1M2XpwBEZrzW2-AXSrPCfrB1HJoW48U
+
+{
+  "name": "demo-vm",
+  "image": "nginx:latest",
+  "cpu": 0.5,
+  "memory": 256,
+  "ports": [9999],
+  "env": {
+    "ENV": "demo"
+  },
+  "container_id": ""
+}

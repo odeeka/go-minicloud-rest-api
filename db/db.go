@@ -59,4 +59,16 @@ func createTables() {
 		panic("Could not create 'storages' table.")
 	}
 
+	createAccountsTable := `
+CREATE TABLE IF NOT EXISTS accounts (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	username TEXT UNIQUE NOT NULL,
+	password TEXT NOT NULL
+);`
+
+	_, err = DB.Exec(createAccountsTable)
+	if err != nil {
+		panic("Could not create 'accounts' table.")
+	}
+
 }

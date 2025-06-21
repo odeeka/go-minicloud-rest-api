@@ -15,8 +15,10 @@ func main() {
 
 	server := gin.Default()
 
+	routes.RegisterAccountRoutes(server)
 	routes.RegisterVmsRoutes(server)
 	routes.RegisterStoragesRoutes(server)
+	routes.RegisterPublicRoutes(server)
 
 	server.Run(":8080")
 }
