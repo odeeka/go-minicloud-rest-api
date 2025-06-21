@@ -1,0 +1,2 @@
+GET http://localhost:8080/public
+//GET http://localhost:8080/public/ping

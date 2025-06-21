@@ -10,6 +10,14 @@ Each VM is represented by a record in a _SQLite database_ and is backed by a _Do
 
 ## Key Features
 
+## Accounts
+
+- Create account (username + password) to connect from Terraform Provider
+- Get all accounts
+- Delete accounts
+- Update account
+- Verify credential / password
+
 ### Virtual Machine (Docker simulation)
 
 - __Create a VM__ – Launches a Docker container based on the provided image, environment variables, and ports, and stores metadata in the database.
