@@ -18,6 +18,16 @@ Each VM is represented by a record in a _SQLite database_ and is backed by a _Do
 - __Update a VM__ – Modifies the metadata of an existing VM.
 - __Delete a VM__ – Stops and removes the associated Docker container, then deletes the VM record from the database.
 
+### Stroage (Docker volume simulation)
+
+- __List storage__
+- __Create storage__
+- __Get a storage__
+- __Delete a storage__
+- __Update storage size__
+- __Attach a storage to VM__
+- __Deatch a storage from VM__
+
 ### Storage Account (MiniO simulation)
 
 ## Architecture Overview
@@ -79,6 +89,8 @@ These files can be executed using a supported IDE/editor such as:
 - JetBrains IDEs like GoLand or IntelliJ, which support .http files natively.
 
 ### Available Test Files
+
+#### VM
 
 - __create-vm.http__ > Sends a POST /vms request to create a new VM
 - __get-all-vms.http__ > Sends a GET /vms request to retrieve all VMs
