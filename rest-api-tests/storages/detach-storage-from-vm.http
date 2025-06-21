@@ -1,0 +1,2 @@
+#/storages/:storage_id/attach/:vm_id
+POST http://localhost:8080/storages/6/detach/7

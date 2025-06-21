@@ -1,0 +1,6 @@
+PUT http://localhost:8080/storages/2
+Content-Type: application/json
+
+{
+  "size_gb": 200
+}

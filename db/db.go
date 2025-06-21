@@ -43,18 +43,20 @@ func createTables() {
 		panic("Could not create 'vms' table.")
 	}
 
-	// createEventsTable := `
-	// CREATE TABLE IF NOT EXISTS events (
-	// 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	// 	name TEXT NOT NULL,
-	// 	description TEXT NOT NULL,
-	// 	location TEXT NOT NULL,
-	// 	dateTime DATETIME NOT NULL,
-	// 	user_id INTEGER,
-	// 	FOREIGN KEY(user_id) REFERENCES users(id)
-	// )
-	// `
+	createStoragesTable := `
+	CREATE TABLE IF NOT EXISTS storages (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		name TEXT NOT NULL,
+		size_gb INTEGER NOT NULL,
+		vm_id INTEGER,
+		container_id TEXT
+	);
+	`
 
-	// _, err = DB.Exec(createEventsTable)
+	_, err = DB.Exec(createStoragesTable)
+
+	if err != nil {
+		panic("Could not create 'storages' table.")
+	}
 
 }

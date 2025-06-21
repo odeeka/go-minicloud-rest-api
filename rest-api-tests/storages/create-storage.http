@@ -1,0 +1,9 @@
+POST http://localhost:8080/storages
+Content-Type: application/json
+
+{
+  //"name": "demo-storage-2",
+  "size_gb": 180,
+  "vm_id": -1,
+  "container_id": ""
+}
