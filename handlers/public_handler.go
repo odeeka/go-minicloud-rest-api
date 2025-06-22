@@ -7,5 +7,5 @@ import (
 )
 
 func Ping(context *gin.Context) {
-	context.JSON(http.StatusOK, gin.H{"message": "Pulbic endpoint", "ping": "pong"})
+	context.JSON(http.StatusOK, gin.H{"message": "Public endpoint of Minicloud REST API", "ping": "pong"})
 }

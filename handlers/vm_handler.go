@@ -2,7 +2,9 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
+	"reflect"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -19,9 +21,11 @@ func ListVMs(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"message": "Fetched all VMS from database", "VMS": vms})
 }
 
+// CreateVM handles the POST request to create a new virtual machine simulation
 func CreateVM(context *gin.Context) {
 	var vm models.VM
 
+	// Parse the incoming JSON payload into the VM model
 	err := context.ShouldBindJSON(&vm)
 
 	if err != nil {
@@ -29,14 +33,17 @@ func CreateVM(context *gin.Context) {
 		return
 	}
 
-	// Here create and start the Docker container to simulate the VM
-	// err = services.StartContainer(&vm)
-	// if err != nil {
-	// 	context.JSON(http.StatusBadRequest, gin.H{"message": "Failed to start the VM", "error": err.Error()})
-	// 	return
-	// }
+	// Start a background container to simulate the virtual machine
+	// This is the place to plug in different VM simulation technologies like Docker, VirtualBox, or others
+	// If you only want to simulate the VM at the database level and do not need to start an actual service,
+	// you can comment out the following line
+	err = services.StartContainer(&vm)
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Failed to start the VM", "error": err.Error()})
+		return
+	}
 
-	// If the containers runs the metadata will be inserted
+	// Store the VM metadata in the database after the container has started
 	err = vm.InsertVM()
 
 	if err != nil {
@@ -44,6 +51,7 @@ func CreateVM(context *gin.Context) {
 		return
 	}
 
+	// Return success response with the VM details
 	context.JSON(http.StatusCreated, gin.H{"message": "VM created and stored in database", "VM": vm})
 }
 
@@ -109,8 +117,8 @@ func UpdateVM(context *gin.Context) {
 		return
 	}
 
-	//vm, err := models.GetVMByID(vmId)
-
+	// Get the current VM metadata
+	vm, err := models.GetVMByID(vmId)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch the VM.", "error": err})
 		return
@@ -124,10 +132,67 @@ func UpdateVM(context *gin.Context) {
 		return
 	}
 
+	needsRecreate := false
+
+	fmt.Println("Needs recreate: ", needsRecreate)
+	fmt.Println("VM image: ", vm.Image)
+	fmt.Println("VM ports: ", vm.Ports)
+	fmt.Println("VM env: ", vm.Env)
+
+	if vm.Image != updatedVM.Image {
+		needsRecreate = true
+	}
+
+	// Normalize the default values (client based data vs Terraform input)
+	if updatedVM.Ports != nil && len(updatedVM.Ports) == 0 {
+		updatedVM.Ports = nil
+	}
+
+	if updatedVM.Env != nil && len(updatedVM.Env) == 0 {
+		updatedVM.Env = nil
+	}
+
+	if !reflect.DeepEqual(vm.Ports, updatedVM.Ports) {
+		needsRecreate = true
+	}
+
+	if !reflect.DeepEqual(vm.Env, updatedVM.Env) {
+		needsRecreate = true
+	}
+
+	fmt.Println("Needs recreate: ", needsRecreate)
+	// Perform a live update of the container when only CPU or memory values change.
+	// If image, ports, or environment variables are modified, the container should be recreated.
+	// This function simulates VM updates using container technology (e.g., Docker, VirtualBox, etc.).
+	if needsRecreate {
+
+		err = services.StopAndRemoveContainer(vm.ContainerID)
+
+		if err != nil {
+			context.JSON(http.StatusBadRequest, gin.H{"message": "Failed to stop & remove the VM", "error": err.Error()})
+		}
+
+		err = services.StartContainer(&updatedVM)
+
+		if err != nil {
+			context.JSON(http.StatusBadRequest, gin.H{"message": "Failed to start the VM", "error": err.Error()})
+			return
+		}
+
+	} else {
+		updatedVM.ContainerID = vm.ContainerID // Keep the container ID
+		err = services.UpdateContainer(&updatedVM)
+	}
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Failed to update the VM", "error": err.Error()})
+		return
+	}
+
+	// Update the database with new data
 	updatedVM.ID = vmId
 	err = updatedVM.UpdateVMByID()
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not update VM.", "error": err})
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not update the metadata of VM in database", "error": err})
 		return
 	}
 	context.JSON(http.StatusOK, gin.H{"message": "VM updated successfully!", "VM": updatedVM})
