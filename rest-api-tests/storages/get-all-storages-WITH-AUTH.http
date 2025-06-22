@@ -1,0 +1,2 @@
+GET http://localhost:8080/storages
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA1NDYzMTMsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.pN9tdelW9EzWoMAS3a0ttpFwZMCr3duo31R7k9Kdf7s
