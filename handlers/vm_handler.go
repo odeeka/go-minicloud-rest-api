@@ -30,11 +30,11 @@ func CreateVM(context *gin.Context) {
 	}
 
 	// Here create and start the Docker container to simulate the VM
-	err = services.StartContainer(&vm)
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Failed to start the VM", "error": err.Error()})
-		return
-	}
+	// err = services.StartContainer(&vm)
+	// if err != nil {
+	// 	context.JSON(http.StatusBadRequest, gin.H{"message": "Failed to start the VM", "error": err.Error()})
+	// 	return
+	// }
 
 	// If the containers runs the metadata will be inserted
 	err = vm.InsertVM()

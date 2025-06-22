@@ -1,0 +1,13 @@
+PUT http://localhost:8080/vms/9
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA2MDA5MTAsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.BTnFBvxxTgwqa_O2EwHpPeEjgO9Otj3GxOPOXoJpdpM
+
+{
+  "name": "tf-vm-b",
+  "image": "nginx:latest",
+  "cpu": 0.5,
+  "memory": 64,
+  "ports": null,
+  "env": null,
+  "container_id": ""
+}
