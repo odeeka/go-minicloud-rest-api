@@ -120,3 +120,17 @@ Steps:
 
 - Give the `annotations` to the handlers.
 - Initialize the Swag (`/docs`)
+
+## Generate client-go
+
+Install generator:
+
+```bash
+npm install @openapitools/openapi-generator-cli -g
+```
+
+Generate the client code:
+
+```bash
+openapi-generator-cli generate -i docs/swagger.yaml -g go -o gen-client --additional-properties=packageName=minicloudclientgo
+```
