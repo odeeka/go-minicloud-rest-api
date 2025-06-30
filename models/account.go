@@ -7,10 +7,11 @@ import (
 	"github.com/odeeka/go-minicloud-rest-api/utils"
 )
 
+// Account represents a user account in the system
 type Account struct {
-	ID       int64  `json:"id"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	ID       int64  `json:"id"`       // Unique identifier
+	Username string `json:"username"` // Username for login
+	Password string `json:"password"` // Password (stored hashed, omit in response)
 }
 
 func GetAllAccount() ([]Account, error) {

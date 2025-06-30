@@ -8,15 +8,40 @@ import (
 	"github.com/odeeka/go-minicloud-rest-api/db"
 )
 
+// VM represents a simulated virtual machine in the system.
+// swagger:model
 type VM struct {
-	ID          int64             `json:"id"` // DB autoincrement
-	Name        string            `json:"name"`
-	Image       string            `json:"image"`
-	CPU         float64           `json:"cpu"`
-	Memory      int               `json:"memory"` // MB
-	Ports       []int             `json"ports"`   // [80, 443]
-	Env         map[string]string `json:"env"`    // {"Env":"dev"}
-	ContainerID string            `json:"container_id"`
+	// ID is the unique identifier of the virtual machine.
+	// required: true
+	ID int64 `json:"id"`
+
+	// Name of the virtual machine.
+	// required: true
+	Name string `json:"name"`
+
+	// Image used to start the virtual machine (e.g., "nginx", "ubuntu").
+	// required: true
+	Image string `json:"image"`
+
+	// CPU represents the number of virtual CPUs allocated to the VM.
+	// example: 1.5
+	CPU float64 `json:"cpu"`
+
+	// Memory in megabytes allocated to the VM.
+	// example: 1024
+	Memory int `json:"memory"`
+
+	// Ports to expose on the container (e.g., [80, 443]).
+	// example: [80, 443]
+	Ports []int `json"ports"`
+
+	// Env contains environment variables passed to the container.
+	// example: {"ENV": "dev"}
+	Env map[string]string `json:"env"`
+
+	// ContainerID is the Docker container ID simulating the VM.
+	// required: false
+	ContainerID string `json:"container_id"`
 }
 
 // Classical CRUD methods

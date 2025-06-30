@@ -12,6 +12,16 @@ import (
 	"github.com/odeeka/go-minicloud-rest-api/services"
 )
 
+// ListVMs godoc
+// @Summary      List all VMs
+// @Description  Retrieves a list of all virtual machines
+// @Tags         vms
+// @Security BearerAuth
+// @Accept json
+// @Produce      json
+// @Success      200  {object}  map[string]interface{}
+// @Failure      500  {object}  map[string]string
+// @Router       /vms [get]
 func ListVMs(context *gin.Context) {
 	vms, err := models.GetAllVms()
 	if err != nil {
@@ -22,6 +32,17 @@ func ListVMs(context *gin.Context) {
 }
 
 // CreateVM handles the POST request to create a new virtual machine simulation
+// CreateVM godoc
+// @Summary      Create a new VM
+// @Description  Creates and stores metadata for a new virtual machine simulation
+// @Tags         vms
+// @Accept       json
+// @Produce      json
+// @Param        vm  body      models.VM  true  "VM to create"
+// @Success      201  {object}  map[string]interface{}
+// @Failure      400  {object}  map[string]string
+// @Failure      500  {object}  map[string]string
+// @Router       /vms [post]
 func CreateVM(context *gin.Context) {
 	var vm models.VM
 
@@ -55,6 +76,17 @@ func CreateVM(context *gin.Context) {
 	context.JSON(http.StatusCreated, gin.H{"message": "VM created and stored in database", "VM": vm})
 }
 
+// GetVM godoc
+// @Summary      Get VM by ID
+// @Description  Retrieves a single virtual machine by its ID
+// @Tags         vms
+// @Produce      json
+// @Param        id   path      int  true  "VM ID"
+// @Success      200  {object}  map[string]interface{}
+// @Failure      400  {object}  map[string]string
+// @Failure      404  {object}  map[string]string
+// @Failure      500  {object}  map[string]string
+// @Router       /vms/{id} [get]
 func GetVM(context *gin.Context) {
 	vmId, err := strconv.ParseInt(context.Param("id"), 10, 64)
 	if err != nil {
@@ -75,6 +107,16 @@ func GetVM(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"vm": vm})
 }
 
+// DeleteVM godoc
+// @Summary      Delete VM
+// @Description  Deletes a VM and removes its associated container
+// @Tags         vms
+// @Produce      json
+// @Param        id   path      int  true  "VM ID"
+// @Success      200  {object}  map[string]string
+// @Failure      400  {object}  map[string]string
+// @Failure      500  {object}  map[string]string
+// @Router       /vms/{id} [delete]
 func DeleteVM(context *gin.Context) {
 
 	vmId, err := strconv.ParseInt(context.Param("id"), 10, 64)
@@ -110,6 +152,18 @@ func DeleteVM(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"message": "VM deleted successfully with ID: " + strconv.FormatInt(vm.ID, 10)})
 }
 
+// UpdateVM godoc
+// @Summary      Update VM
+// @Description  Updates VM metadata or restarts container if necessary
+// @Tags         vms
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int       true  "VM ID"
+// @Param        vm   body      models.VM true  "Updated VM"
+// @Success      200  {object}  map[string]interface{}
+// @Failure      400  {object}  map[string]string
+// @Failure      500  {object}  map[string]string
+// @Router       /vms/{id} [put]
 func UpdateVM(context *gin.Context) {
 	vmId, err := strconv.ParseInt(context.Param("id"), 10, 64)
 	if err != nil {

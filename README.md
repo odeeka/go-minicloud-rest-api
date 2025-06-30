@@ -105,3 +105,18 @@ These files can be executed using a supported IDE/editor such as:
 - __get-vm-by-id.http__ > Sends a GET /vms/:id request for a specific VM
 - __update-vm.http__ > Sends a PUT /vms/:id request to update an existing VM
 - __delete-vm-by-id.http__ – Sends a DELETE /vms/:id request to delete a VM and its corresponding
+
+## OpenAPI preparation
+
+Install important packages to Swagger:
+
+```bash
+go install github.com/swaggo/swag/cmd/swag@latest
+go get -u github.com/swaggo/gin-swagger
+go get -u github.com/swaggo/files
+```
+
+Steps:
+
+- Give the `annotations` to the handlers.
+- Initialize the Swag (`/docs`)

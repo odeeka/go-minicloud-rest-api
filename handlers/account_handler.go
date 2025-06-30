@@ -8,6 +8,14 @@ import (
 	"github.com/odeeka/go-minicloud-rest-api/utils"
 )
 
+// GetAccounts godoc
+// @Summary List all accounts
+// @Description Retrieves all registered user accounts
+// @Tags account
+// @Produce json
+// @Success 200 {array} models.Account
+// @Failure 500 {object} map[string]string
+// @Router /account/all [get]
 func GetAccounts(context *gin.Context) {
 	accounts, err := models.GetAllAccount()
 	if err != nil {
@@ -17,6 +25,17 @@ func GetAccounts(context *gin.Context) {
 	context.JSON(http.StatusOK, accounts)
 }
 
+// RegisterAccount godoc
+// @Summary Register a new account
+// @Description Create a new user account
+// @Tags account
+// @Accept json
+// @Produce json
+// @Param account body models.Account true "Account registration payload"
+// @Success 201 {object} map[string]string
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /accounts/register [post]
 func RegisterAccount(context *gin.Context) {
 	var acc models.Account
 
@@ -37,6 +56,18 @@ func RegisterAccount(context *gin.Context) {
 	context.JSON(http.StatusCreated, gin.H{"message": "Account created successfully"})
 }
 
+// LoginAccount godoc
+// @Summary Authenticate an account
+// @Description Login with username and password to receive JWT token
+// @Tags account
+// @Accept json
+// @Produce json
+// @Param credentials body models.Account true "Account login credentials"
+// @Success 200 {object} map[string]interface{} "Returns JWT token and account info"
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /accounts/login [post]
 func LoginAccount(context *gin.Context) {
 	var acc models.Account
 
