@@ -1,0 +1,2 @@
+GET http://localhost:8080/vms
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE1NjcxODIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.M5zho7sOfyKkJlJ-yIPCTb1ynVP1dpqZK85XPj221CM

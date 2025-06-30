@@ -1,0 +1,2 @@
+DELETE http://localhost:8080/vms/17
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA4ODMwNjIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.NRcUFAY0rRv8yo8qiq2LC4OqcFii9JTfCMRBiweCkWE

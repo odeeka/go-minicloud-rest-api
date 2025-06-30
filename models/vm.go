@@ -3,6 +3,7 @@ package models
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/odeeka/go-minicloud-rest-api/db"
 )
@@ -86,13 +87,20 @@ func GetVMByID(id int64) (*VM, error) {
 	row := db.DB.QueryRow(query, id)
 
 	var vm VM
-
-	portsJSON, _ := json.Marshal(&vm.Ports)
-	envJSON, _ := json.Marshal(&vm.Env)
+	var portsJSON string
+	var envJSON string
 
 	err := row.Scan(&vm.ID, &vm.Name, &vm.Image, &vm.CPU, &vm.Memory, &portsJSON, &envJSON, &vm.ContainerID)
 	if err != nil {
 		return nil, err
+	}
+
+	// Parse JSON strings to Go types
+	if err := json.Unmarshal([]byte(portsJSON), &vm.Ports); err != nil {
+		return nil, fmt.Errorf("failed to parse ports JSON: %w", err)
+	}
+	if err := json.Unmarshal([]byte(envJSON), &vm.Env); err != nil {
+		return nil, fmt.Errorf("failed to parse env JSON: %w", err)
 	}
 
 	return &vm, nil
