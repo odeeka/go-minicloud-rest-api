@@ -184,7 +184,7 @@ paths:
       summary: Register a new account
       tags:
       - account
-  /ping:
+  /public:
     get:
       consumes:
       - application/json

@@ -1,4 +1,4 @@
-// To define / register the REST routes and endpoints
+// To define / register the REST routes and endpoints for 'account'
 package routes
 
 import (
@@ -10,9 +10,6 @@ func RegisterAccountRoutes(server *gin.Engine) {
 
 	accountsGroup := server.Group("/accounts")
 	accountsGroup.GET("", handlers.GetAccounts)
-	//accountsGroup.GET("/:id", handlers.GetAccountByUsername)
 	accountsGroup.POST("", handlers.RegisterAccount)
 	accountsGroup.POST("/login", handlers.LoginAccount)
-	//vmsGroup.DELETE("/:id", handlers.DeleteAccount)
-	//vmsGroup.PUT("/:id", handlers.UpdateAccount)
 }

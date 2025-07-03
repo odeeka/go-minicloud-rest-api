@@ -164,7 +164,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/ping": {
+        "/public": {
             "get": {
                 "description": "Responds with a simple ping response to verify that the public endpoint is reachable.",
                 "consumes": [

@@ -119,18 +119,17 @@ go get -u github.com/swaggo/files
 Steps:
 
 - Give the `annotations` to the handlers.
-- Initialize the Swag (`/docs`)
-
-## Generate client-go
-
-Install generator:
+- Check and set the PATH with `swag` cli tool (`~/go/bin/swag`)
 
 ```bash
-npm install @openapitools/openapi-generator-cli -g
+export PATH=$PATH:~/go/bin/
 ```
 
-Generate the client code:
+- Initialize the Swag (`/docs`) with `swag init` from root folder
+- Test the swagger -> Run the app
 
 ```bash
-openapi-generator-cli generate -i docs/swagger.yaml -g go -o gen-client --additional-properties=packageName=minicloudclientgo
+go run .
+
+http://localhost:8080/swagger/index.html
 ```

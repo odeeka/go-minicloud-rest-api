@@ -3,13 +3,13 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE4MzQwMjUsInVzZXJJZCI6MiwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.O7gkJtzlkA2uv10SaziGIw2KKITdiWyW4oI8ANV_z5A
 
 {
-  "name": "demo-vm-1",
+  "name": "demo-vm-2",
   "image": "nginx:latest",
-  "cpu": 0.5,
+  "cpu": 0.8,
   "memory": 32,
-  "ports": [7777],
+  "ports": [9999],
   "env": {
-    "ENV": "demo"
+    "ENV": "demo-2"
   },
   "container_id": ""
 }

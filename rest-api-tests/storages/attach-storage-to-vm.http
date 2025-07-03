@@ -1,2 +1,3 @@
 #/storages/:storage_id/attach/:vm_id
-POST http://localhost:8080/storages/6/attach/7
+POST http://localhost:8080/storages/1/attach/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE4MzQwMjUsInVzZXJJZCI6MiwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.O7gkJtzlkA2uv10SaziGIw2KKITdiWyW4oI8ANV_z5A
