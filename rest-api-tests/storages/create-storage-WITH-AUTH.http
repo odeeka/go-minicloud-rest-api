@@ -1,9 +1,9 @@
 POST http://localhost:8080/storages
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA1NDYzMTMsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.pN9tdelW9EzWoMAS3a0ttpFwZMCr3duo31R7k9Kdf7s
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE4MzQwMjUsInVzZXJJZCI6MiwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.O7gkJtzlkA2uv10SaziGIw2KKITdiWyW4oI8ANV_z5A
 
 {
-  //"name": "demo-storage-2",
+  "name": "demo-storage-1",
   "size_gb": 180,
   "vm_id": -1,
   "container_id": ""

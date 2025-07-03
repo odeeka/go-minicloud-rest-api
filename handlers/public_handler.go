@@ -13,7 +13,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} map[string]string
-// @Router /ping [get]
+// @Router /public [get]
 // @Router /public/ping [get]
 func Ping(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"message": "Public endpoint of Minicloud REST API", "ping": "pong"})

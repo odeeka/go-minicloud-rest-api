@@ -119,4 +119,17 @@ go get -u github.com/swaggo/files
 Steps:
 
 - Give the `annotations` to the handlers.
-- Initialize the Swag (`/docs`)
+- Check and set the PATH with `swag` cli tool (`~/go/bin/swag`)
+
+```bash
+export PATH=$PATH:~/go/bin/
+```
+
+- Initialize the Swag (`/docs`) with `swag init` from root folder
+- Test the swagger -> Run the app
+
+```bash
+go run .
+
+http://localhost:8080/swagger/index.html
+```

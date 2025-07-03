@@ -1,15 +1,16 @@
-PUT http://localhost:8080/vms/23
+PUT http://localhost:8080/vms/1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA4ODMwNjIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.NRcUFAY0rRv8yo8qiq2LC4OqcFii9JTfCMRBiweCkWE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE4MzQwMjUsInVzZXJJZCI6MiwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9.O7gkJtzlkA2uv10SaziGIw2KKITdiWyW4oI8ANV_z5A
 
 {
-  "name": "demo-vm-7",
+  "name": "demo-vm-1",
   "image": "nginx:latest",
   "cpu": 0.7,
   "memory": 77,
   "ports": [11111],
   "env": {
-    "ENV": "demo"
+    "ENV": "demo",
+    "Labor": "demo"
   },
   "container_id": ""
 }
